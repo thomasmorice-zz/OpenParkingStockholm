@@ -35,8 +35,33 @@ function getParkingsDataAndPlaceThem() {
             var parkingObj = new ParkingObj(feature);
             var parkingMarker = addMarkerToMap(parkingObj);
             addParkingListenerAndInfo(parkingMarker, parkingObj);
+            drawParkingLine(parkingObj);
         });
     });
+}
+
+/*
+ * Draw parkings that has been fetched on the map
+ */
+function drawParkingLine(parkingObj) {
+    // Get all the coordinates for the current parking zone
+    parkingCoordinates = [];
+    $.each(parkingObj.coordinates, function(key, coordinate) {
+        parkingCoordinates.push({
+            lat: coordinate[1],
+            lng: coordinate[0]
+        });
+    });
+
+    // Draw a line with every coordinates to show the whole parking zone
+    var parkingPath = new google.maps.Polyline({
+        path: parkingCoordinates,
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+    });
+    parkingPath.setMap(map);
 }
 
 function addMarkerToMap(parkingObj) {

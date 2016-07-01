@@ -3,8 +3,14 @@
 OpenParkingStockholm is a simple solution (made for a job application) which provides information about different car parks over Stockholm.
 
 Markers are placed all over the city to show where are the parkings.
+A red line is also drown on the map, to show the zone where parking is.
 
-If you click on a marker : <img src="img/screenshots/parking-marker.png" style="width: 16px;margin-top:-10px;"/> , a bottom sheets modal with different informations about the parking will be shown.
+If you click on a marker : <img src="img/screenshots/parking-marker.png" style="width: 16px;margin-top:-10px;"/> , a bottom sheets modal with different informations about the parking will be shown :
+<img src="img/screenshots/parking-information.png" alt="Drawing" style="width: 1000px"/>
+
+Two buttons on the bottom allows to :
+- Go back to the full view
+- Only close the modal and keep the zoom on the current area
 
 This project can be _easily_<sup>1</sup> reused for another city as I've used the city name as parameter to center the city on screen  :
 ```sh
