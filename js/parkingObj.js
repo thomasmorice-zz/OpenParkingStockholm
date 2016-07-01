@@ -9,7 +9,36 @@
 function ParkingObj(feature) {
     // add coordinates as properties
     this.coordinates = feature.geometry.coordinates;
+    this.properties = feature.properties;
 }
+// class methods
+ParkingObj.prototype.getAddress = function() {
+    var response = "";
+    if (this.properties.ADDRESS == "<Adress saknas>") {
+        response = "No address has been found :-("
+    } else {
+        response = this.properties.ADDRESS;
+    }
+    return response;
+};
+
+ParkingObj.prototype.getDistrict = function() {
+    return this.properties.CITY_DISTRICT;
+};
+
+ParkingObj.prototype.getSizeMeter = function() {
+    var response = "";
+    if (typeof this.properties.VF_METER === "undefined") {
+        response = "not indicated";
+    } else {
+        response = this.properties.VF_METER;
+    }
+    return response;
+};
+
+ParkingObj.prototype.getInformation = function() {
+    return this.properties.OTHER_INFO;
+};
 
 /*
  * Get first coordinates of a geometry because data has several coordinates

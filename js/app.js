@@ -5,7 +5,8 @@
 
 var map;
 var apiKey = "b283e33d-ccdd-4765-9a41-15cc53cca17a"; // API key from http://openparking.stockholm.se
-var zoomValue = 11;
+var unzoomedMapsValue = 11;
+var zoomedMapsValue = 18;
 
 /*
  * Initialize the map from google and set it to the center of Stockholm
@@ -17,7 +18,7 @@ function initMap() {
         var mapDiv = document.getElementById('map');
         map = new google.maps.Map(mapDiv, {
             center: cityLatLng,
-            zoom: zoomValue
+            zoom: unzoomedMapsValue
         });
     });
     getParkingsDataAndPlaceThem();
@@ -33,6 +34,7 @@ function getParkingsDataAndPlaceThem() {
         $.each(data.features, function(key, feature) {
             var parkingObj = new ParkingObj(feature);
             var parkingMarker = addMarkerToMap(parkingObj);
+            addParkingListenerAndInfo(parkingMarker, parkingObj);
         });
     });
 }
@@ -70,5 +72,25 @@ function getLatLngObjectFromName(cityName, callback) {
             // The city latitude and longitude couldn't be retrieve
             callback(false);
         }
+    });
+}
+
+
+function addParkingListenerAndInfo(parkingMarker, parkingObj) {
+    google.maps.event.addListener(parkingMarker, 'click', function() {
+        // add informations for the current parking to be shown on modal window
+        $('#city-district').text(parkingObj.getDistrict());
+        $('#address').text(parkingObj.getAddress());
+        $('#vf-meter').text(parkingObj.getSizeMeter());
+        $('#other-information').text(parkingObj.getInformation());
+
+        map.panTo(parkingMarker.getPosition());
+        map.setZoom(zoomedMapsValue);
+        // Add a listener to this marker so we can show details of the parking
+        $('#parking-details').openModal({
+            //dismissible: false, // Modal can be dismissed by clicking outside of the modal
+            opacity: .2, // Opacity of modal background
+            ready: function() {}, // Callback for Modal open
+        });
     });
 }
