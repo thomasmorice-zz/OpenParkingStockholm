@@ -94,3 +94,10 @@ function addParkingListenerAndInfo(parkingMarker, parkingObj) {
         });
     });
 }
+
+/*
+ * This function is called when we click on the "Back to full view" button on the modal box
+ */
+function backToFullView() {
+    map.setZoom(unzoomedMapsValue);
+}
