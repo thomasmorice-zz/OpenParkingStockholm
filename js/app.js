@@ -36,7 +36,14 @@ function getParkingsDataAndPlaceThem() {
             var parkingMarker = addMarkerToMap(parkingObj);
             addParkingListenerAndInfo(parkingMarker, parkingObj);
             drawParkingLine(parkingObj);
+            markers.push(parkingMarker);
         });
+        var mcOptions = {
+            gridSize: 50,
+            maxZoom: 15,
+            imagePath: 'img/m'
+        };
+        var markerCluster = new MarkerClusterer(map, markers, mcOptions);
     });
 }
 
