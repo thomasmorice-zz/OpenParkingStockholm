@@ -4,6 +4,8 @@ OpenParkingStockholm is a simple solution (made for a job application) which pro
 
 Markers are placed all over the city to show where are the parkings.
 
+If you click on a marker : <img src="img/screenshots/parking-marker.png" style="width: 16px;margin-top:-10px;"/> , a bottom sheets modal with different informations about the parking will be shown.
+
 This project can be _easily_<sup>1</sup> reused for another city as I've used the city name as parameter to center the city on screen  :
 ```sh
 // The city where the map will be centered
