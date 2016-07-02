@@ -1,5 +1,5 @@
 /*
- * OpenParking Stockholm v0.1
+ * OpenParking Stockholm
  * Thomas Morice - 01/07/2016
  * Test case that should be runned by SpecRunner.html
  */
@@ -44,9 +44,9 @@ function initTest() {
                 });
             });
 
-            // For each first coordinate that has been fetched from JSON feature, test that they are numbers
+            // For each address, test that the string which is returned is not empty
             describe("getAddress", function() {
-                it("Adress from parrkingObj is not empty string", function() {
+                it("Adress from parkingObj is not empty string", function() {
                     expect(parkingObj.getAddress()).not.toEqual("");
                 });
             });

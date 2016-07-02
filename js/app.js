@@ -5,8 +5,8 @@
 
 var map;
 var apiKey = "b283e33d-ccdd-4765-9a41-15cc53cca17a"; // API key from http://openparking.stockholm.se
-var unzoomedMapsValue = 11;
-var zoomedMapsValue = 18;
+var unzoomedMapsValue = 11; // Zoom value when we want to show the map on full city view
+var zoomedMapsValue = 18; // Zoom value when we want to show car park information
 
 /*
  * Initialize the map from google and set it to the center of Stockholm
@@ -41,7 +41,7 @@ function getParkingsDataAndPlaceThem() {
         var mcOptions = {
             gridSize: 50,
             maxZoom: 15,
-            imagePath: 'img/m'
+            imagePath: 'img/m' // Cluster can have different icon which represents density
         };
         var markerCluster = new MarkerClusterer(map, markers, mcOptions);
     });
