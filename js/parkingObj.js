@@ -11,7 +11,7 @@ function ParkingObj(feature) {
     this.coordinates = feature.geometry.coordinates;
     this.properties = feature.properties;
 }
-// class methods
+// Get the address and if there is no address, return a simple message to show
 ParkingObj.prototype.getAddress = function() {
     var response = "";
     if (this.properties.ADDRESS == "<Adress saknas>") {
@@ -22,10 +22,12 @@ ParkingObj.prototype.getAddress = function() {
     return response;
 };
 
+// Get the district
 ParkingObj.prototype.getDistrict = function() {
     return this.properties.CITY_DISTRICT;
 };
 
+// Get the siez of the parking in meter
 ParkingObj.prototype.getSizeMeter = function() {
     var response = "";
     if (typeof this.properties.VF_METER === "undefined") {
@@ -36,6 +38,7 @@ ParkingObj.prototype.getSizeMeter = function() {
     return response;
 };
 
+// Get additionnal information about the car park
 ParkingObj.prototype.getInformation = function() {
     return this.properties.OTHER_INFO;
 };
